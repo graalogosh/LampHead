@@ -10,7 +10,7 @@ LEDStrip::LEDStrip(unsigned int redPin, unsigned int greenPin, unsigned int blue
 	pinMode (bluePin, OUTPUT);
 
 	setColor(255,255,255);//TODO delete
-	lightState = OFF;
+	lightState = ON;
 }
 	
 LEDStrip::LEDStrip(unsigned int redPin, unsigned int redColor, unsigned int greenPin, unsigned int greenColor, unsigned int bluePin, unsigned int bluePower){
