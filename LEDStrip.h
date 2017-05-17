@@ -37,6 +37,15 @@ public:
 	LEDStrip(unsigned int redPin, unsigned int redColor, unsigned int greenPin, unsigned int greenColor, unsigned int bluePin, unsigned int bluePower);
 
 	void setColor (unsigned int red, unsigned int green, unsigned int blue);
+
+	void blink(const unsigned int count);
+	void fadeOff(unsigned int steps);
+	void fadeOn(unsigned int steps);
+	void toogleLightSmoothly();
+	void toogleLightImmediately();
+	void turnOn();
+	void turnOff();
+
 };
 
 #endif //LED_STRIP

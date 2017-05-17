@@ -23,10 +23,90 @@ void LEDStrip::setColor (unsigned int red, unsigned int green, unsigned int blue
 	currentColor.green = green;
 	currentColor.blue = blue;
 
+	if (red == 0 && green == 0 && blue == 0){
+		lightState = OFF;
+	}
+
 	if (lightState == ON){
-		analogWrite(redPin, currentColor.red);
-		analogWrite(greenPin, currentColor.green);
-		analogWrite(bluePin, currentColor.blue);
+		writeRGB(currentColor.red, currentColor.green, currentColor.blue);
 	}
 }
 
+void LEDStrip::blink(const unsigned int count){
+	int doubleCount = count * 2;
+	for (int i = 0; i < doubleCount; i++){
+		toogleLightImmediately();
+		delay(100);
+	}
+}
+
+void LEDStrip::fadeOff(const unsigned int steps){
+	
+	int red = currentColor.red;
+	int green = currentColor.green;
+	int blue = currentColor.blue;
+
+	int redStep = currentColor.red / steps;
+	int greenStep = currentColor.green / steps;
+	int blueStep = currentColor.blue / steps;
+
+	for (int i = 0; i< steps; i++){
+		red -= redStep;
+		green -= greenStep;
+		blue -= blueStep;
+
+		writeRGB(red, green, blue);
+	}
+	//floor fix
+	writeRGB(0,0,0);
+}
+
+void LEDStrip::fadeOn(const unsigned int steps){
+
+	unsigned int red = 0;
+	unsigned int green = 0;
+	unsigned int blue = 0;
+
+	int redStep = currentColor.red / steps;
+	int greenStep = currentColor.green / steps;
+	int blueStep = currentColor.blue / steps;
+
+	for (int i = 0; i< steps; i++){
+		red += redStep;
+		green += greenStep;
+		blue += blueStep;
+
+		writeRGB(red, green, blue);
+	}
+	//floor fix
+	writeRGB(currentColor.red, currentColor.green, currentColor.blue);
+}
+
+void LEDStrip::toogleLightSmoothly(){
+
+}
+
+void LEDStrip::toogleLightImmediately(){
+	if (lightState==ON){
+		turnOff();
+	}
+	else{
+		turnOn();
+	}
+}
+
+void LEDStrip::turnOn(){
+	lightState = ON;
+	setColor(currentColor.red, currentColor.green, currentColor.blue);
+}
+
+void LEDStrip::turnOff(){
+	lightState = OFF;
+	writeRGB(0,0,0);
+}
+
+void LEDStrip::writeRGB(unsigned int red, unsigned int green, unsigned int blue){
+	analogWrite(redPin, red);
+	analogWrite(greenPin, green);
+	analogWrite(bluePin, blue);
+}
