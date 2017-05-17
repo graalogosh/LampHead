@@ -59,6 +59,7 @@ void LEDStrip::fadeOff(const unsigned int steps){
 	}
 	//floor fix
 	writeRGB(0,0,0);
+	lightState = OFF;
 }
 
 void LEDStrip::fadeOn(const unsigned int steps){
@@ -80,6 +81,7 @@ void LEDStrip::fadeOn(const unsigned int steps){
 	}
 	//floor fix
 	writeRGB(currentColor.red, currentColor.green, currentColor.blue);
+	lightState = ON;
 }
 
 void LEDStrip::toogleLightSmoothly(){

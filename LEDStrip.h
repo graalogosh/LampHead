@@ -4,9 +4,9 @@
 #include "Arduino.h"
 
 struct Color{
-		unsigned int red;
-		unsigned int green;
-		unsigned int blue;
+	unsigned int red;
+	unsigned int green;
+	unsigned int blue;
 };
 
 class LEDStrip{
@@ -30,7 +30,7 @@ private:
 	const unsigned int colorCount = COLOR_COUNT;
 	#undef COLOR_COUNT
 
-enum { OFF, ON } lightState;
+	enum { OFF, ON } lightState;
 
 	void writeRGB(unsigned int red, unsigned int green, unsigned int blue);
 
