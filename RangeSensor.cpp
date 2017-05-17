@@ -48,3 +48,7 @@ unsigned int RangeSensor::getVoltage(){
 	}
 	return voltage / 10;
 }
+
+bool RangeSensor::rangeIsValid(unsigned int range){
+		return range >= minHeight && range<=maxHeight;
+	}
