@@ -84,8 +84,13 @@ void LEDStrip::fadeOn(const unsigned int steps){
 	lightState = ON;
 }
 
-void LEDStrip::toogleLightSmoothly(){
-
+void LEDStrip::toogleLightSmoothly(const unsigned int steps){
+	if (lightState==ON){
+		fadeOn(steps);
+	}
+	else{
+		fadeOff(steps);
+	}
 }
 
 void LEDStrip::toogleLightImmediately(){
