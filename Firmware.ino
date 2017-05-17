@@ -52,7 +52,7 @@ void loop(){
 		return;
 	}
 
-	delay(1000);
+	delay(200);//need to find
 	const int distance2 = rangeSensor->getRange();
 	if (distance2==-1){
 		#ifdef DEBUG
@@ -62,6 +62,7 @@ void loop(){
 		#endif //DEBUG
 
 		ledStrip->toogleLightSmoothly(fadingSteps);
+		delay (1000);
 		return;
 	}
 
@@ -96,5 +97,7 @@ void loop(){
 		#endif //DEBUG
 			
 	}
+	delay (1000);
+	return;
 }
 
