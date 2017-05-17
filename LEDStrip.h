@@ -32,6 +32,8 @@ private:
 
 enum { OFF, ON } lightState;
 
+	void writeRGB(unsigned int red, unsigned int green, unsigned int blue);
+
 public:
 	LEDStrip(unsigned int redPin, unsigned int greenPin, unsigned int bluePin);
 	LEDStrip(unsigned int redPin, unsigned int redColor, unsigned int greenPin, unsigned int greenColor, unsigned int bluePin, unsigned int bluePower);
