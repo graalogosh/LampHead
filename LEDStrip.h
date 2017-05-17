@@ -13,7 +13,7 @@ private:
 		unsigned int red;
 		unsigned int green;
 		unsigned int blue;
-	} currentState; //RGB
+	} currentColor; //RGB
 
 public:
 	LEDStrip(unsigned int redPin, unsigned int greenPin, unsigned int bluePin);

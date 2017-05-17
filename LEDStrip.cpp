@@ -18,12 +18,12 @@ LEDStrip::LEDStrip(unsigned int redPin, unsigned int redColor, unsigned int gree
 }
 
 void LEDStrip::setColor (unsigned int red, unsigned int green, unsigned int blue){
-	currentState.red = red;
-	currentState.green = green;
-	currentState.blue = blue;
+	currentColor.red = red;
+	currentColor.green = green;
+	currentColor.blue = blue;
 
-	analogWrite(redPin, currentState.red);
-	analogWrite(greenPin, currentState.green);
-	analogWrite(bluePin, currentState.blue);
+	analogWrite(redPin, currentColor.red);
+	analogWrite(greenPin, currentColor.green);
+	analogWrite(bluePin, currentColor.blue);
 }
 
