@@ -95,6 +95,7 @@ void loop(){
 			Serial.print("Dist2: "); Serial.println(distance2);
 			Serial.println("Dist2 == Dist1 - change color");
 		#endif //DEBUG
+			ledStrip->turnOn();
 			ledStrip->blink(2);
 			while (rangeSensor->getRange() != -1){
 				float distance = rangeSensor->getRange();
