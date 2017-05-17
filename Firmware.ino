@@ -95,7 +95,21 @@ void loop(){
 			Serial.print("Dist2: "); Serial.println(distance2);
 			Serial.println("Dist2 == Dist1 - change color");
 		#endif //DEBUG
-			
+			ledStrip->blink(2);
+			while (rangeSensor->getRange() != -1){
+				float distance = rangeSensor->getRange();
+				float step = (maxHeight-minHeight)/ledStrip->getPredefinedColorCount();
+				float area = round(distance/step);
+
+				#ifdef DEBUG
+					Serial.print("Dist: "); Serial.println(distance);
+					Serial.print("Step: "); Serial.println(step);
+					Serial.print("Area: "); Serial.println(area);
+				#endif //DEBUG
+
+				ledStrip->setPredefinedColor(area);
+				delay(200);
+			}
 	}
 	delay (1000);
 	return;

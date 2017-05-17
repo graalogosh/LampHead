@@ -119,3 +119,17 @@ void LEDStrip::writeRGB(unsigned int red, unsigned int green, unsigned int blue)
 	analogWrite(greenPin, green);
 	analogWrite(bluePin, blue);
 }
+
+unsigned int LEDStrip::getPredefinedColorCount(){
+	return colorCount;
+}
+
+void LEDStrip::setPredefinedColor(unsigned int number){
+	if (number > colorCount){
+		return;
+	}
+	else if (number == colorCount){
+		number--;
+	}
+	setColor(predefinedColors[number].red, predefinedColors[number].green, predefinedColors[number].blue);
+}

@@ -17,12 +17,13 @@ private:
 
 	Color currentColor;
 
-	#define COLOR_COUNT 7
+	#define COLOR_COUNT 8
 	Color predefinedColors[COLOR_COUNT] ={
 		{255,0,0},
 		{255,128,0},
 		{255,255,0},
 		{0,255,0},
+		{255,255,255},
 		{0,191,255},
 		{0,0,255},
 		{90,0,157}
@@ -39,6 +40,7 @@ public:
 	LEDStrip(unsigned int redPin, unsigned int redColor, unsigned int greenPin, unsigned int greenColor, unsigned int bluePin, unsigned int bluePower);
 
 	void setColor (unsigned int red, unsigned int green, unsigned int blue);
+	void setPredefinedColor(unsigned int number);
 
 	void blink(const unsigned int count);
 	void fadeOff(unsigned int steps);
@@ -47,6 +49,7 @@ public:
 	void toogleLightImmediately();
 	void turnOn();
 	void turnOff();
+	unsigned int getPredefinedColorCount();
 
 };
 
