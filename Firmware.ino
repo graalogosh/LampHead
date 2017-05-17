@@ -44,14 +44,16 @@ void setup(){
 void loop(){
 	// Serial.println(rangeSensor->getRange());
 	// delay(200);
-	const unsigned int distance1 = rangeSensor->getRange();
+	// return;
+
+	const int distance1 = rangeSensor->getRange();
 	if (distance1==-1){
 		//do nothing
 		return;
 	}
 
 	delay(1000);
-	const unsigned int distance2 = rangeSensor->getRange();
+	const int distance2 = rangeSensor->getRange();
 	if (distance2==-1){
 		#ifdef DEBUG
 			Serial.print("Dist1: "); Serial.println(distance1);
