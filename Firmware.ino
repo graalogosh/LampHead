@@ -21,15 +21,19 @@ LEDStrip* ledStrip;
 RangeSensor* rangeSensor;
 
 void setup(){
+	Serial.begin(9600);
+
 	ledStrip = new LEDStrip(redPin, greenPin, bluePin);
 	ledStrip->setColor(255,255,255);
 
 	// rangeSensor = new RangeSensor(rangePin, minHeight, maxHeight);
 	rangeSensor = new RangeSensor(rangePin);
 
+
 }
 
 void loop(){
-
+	Serial.println(rangeSensor->getRange());
+	delay(200);
 }
 
