@@ -3,17 +3,19 @@
 
 #include "Arduino.h"
 
+struct Color{
+		unsigned int red;
+		unsigned int green;
+		unsigned int blue;
+};
+
 class LEDStrip{
 private:
 	unsigned int redPin;
 	unsigned int greenPin;
 	unsigned int bluePin;
 
-	struct{
-		unsigned int red;
-		unsigned int green;
-		unsigned int blue;
-	} currentColor; //RGB
+	Color currentColor;
 
 enum { OFF, ON } lightState;
 
