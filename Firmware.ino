@@ -1,3 +1,5 @@
+#include "LEDStrip.h"
+
 //LED pins
 static const unsigned int redPin = 10;
 static const unsigned int greenPin = 9;
@@ -13,4 +15,15 @@ static const unsigned int maxHeight = 40;
 //light increase and reduce speed
 static const unsigned int reduceSpeed = 5;
 static const unsigned int increaceSpeed = 5;
+
+LEDStrip* ledStrip;
+
+void setup(){
+	ledStrip = new LEDStrip(redPin, greenPin, bluePin);
+	ledStrip->setColor(255,255,255);
+}
+
+void loop(){
+
+}
 
