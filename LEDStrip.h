@@ -43,7 +43,7 @@ public:
 	void blink(const unsigned int count);
 	void fadeOff(unsigned int steps);
 	void fadeOn(unsigned int steps);
-	void toogleLightSmoothly();
+	void toogleLightSmoothly(const unsigned int steps);
 	void toogleLightImmediately();
 	void turnOn();
 	void turnOff();
