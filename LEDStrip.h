@@ -15,6 +15,8 @@ private:
 		unsigned int blue;
 	} currentColor; //RGB
 
+enum { OFF, ON } lightState;
+
 public:
 	LEDStrip(unsigned int redPin, unsigned int greenPin, unsigned int bluePin);
 	LEDStrip(unsigned int redPin, unsigned int redColor, unsigned int greenPin, unsigned int greenColor, unsigned int bluePin, unsigned int bluePower);

@@ -10,6 +10,7 @@ LEDStrip::LEDStrip(unsigned int redPin, unsigned int greenPin, unsigned int blue
 	pinMode (bluePin, OUTPUT);
 
 	setColor(255,255,255);//TODO delete
+	lightState = OFF;
 }
 	
 LEDStrip::LEDStrip(unsigned int redPin, unsigned int redColor, unsigned int greenPin, unsigned int greenColor, unsigned int bluePin, unsigned int bluePower){
@@ -22,8 +23,10 @@ void LEDStrip::setColor (unsigned int red, unsigned int green, unsigned int blue
 	currentColor.green = green;
 	currentColor.blue = blue;
 
-	analogWrite(redPin, currentColor.red);
-	analogWrite(greenPin, currentColor.green);
-	analogWrite(bluePin, currentColor.blue);
+	if (lightState == ON){
+		analogWrite(redPin, currentColor.red);
+		analogWrite(greenPin, currentColor.green);
+		analogWrite(bluePin, currentColor.blue);
+	}
 }
 
