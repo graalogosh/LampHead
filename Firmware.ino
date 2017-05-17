@@ -3,8 +3,8 @@
 
 //LED pins
 const unsigned int redPin = 10;
-const unsigned int greenPin = 9;
-const unsigned int bluePin = 11;
+const unsigned int greenPin = 11;
+const unsigned int bluePin = 9;
 
 //range sensor signal
 const unsigned int rangePin = A7;
