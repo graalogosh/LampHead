@@ -17,6 +17,19 @@ private:
 
 	Color currentColor;
 
+	#define COLOR_COUNT 7
+	Color predefinedColors[COLOR_COUNT] ={
+		{255,0,0},
+		{255,128,0},
+		{255,255,0},
+		{0,255,0},
+		{0,191,255},
+		{0,0,255},
+		{90,0,157}
+	};
+	const unsigned int colorCount = COLOR_COUNT;
+	#undef COLOR_COUNT
+
 enum { OFF, ON } lightState;
 
 public:
