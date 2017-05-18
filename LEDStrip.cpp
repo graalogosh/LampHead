@@ -1,3 +1,4 @@
+#define DEBUG
 #include "LEDStrip.h"
 
 LEDStrip::LEDStrip(unsigned int redPin, unsigned int greenPin, unsigned int bluePin){
@@ -10,7 +11,7 @@ LEDStrip::LEDStrip(unsigned int redPin, unsigned int greenPin, unsigned int blue
 	pinMode (bluePin, OUTPUT);
 
 	setColor(255,255,255);//TODO delete
-	lightState = ON;
+	lightState = OFF;
 }
 	
 LEDStrip::LEDStrip(unsigned int redPin, unsigned int redColor, unsigned int greenPin, unsigned int greenColor, unsigned int bluePin, unsigned int bluePower){
@@ -22,6 +23,15 @@ void LEDStrip::setColor (unsigned int red, unsigned int green, unsigned int blue
 	currentColor.red = red;
 	currentColor.green = green;
 	currentColor.blue = blue;
+
+	#ifdef DEBUG
+		Serial.print("RGB: "); 
+		Serial.print(currentColor.red);
+		Serial.print(", ");
+		Serial.print(currentColor.green);
+		Serial.print(", ");
+		Serial.println(currentColor.blue);
+	#endif
 
 	if (red == 0 && green == 0 && blue == 0){
 		lightState = OFF;
