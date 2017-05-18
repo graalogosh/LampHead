@@ -15,6 +15,10 @@ private:
 	unsigned int greenPin;
 	unsigned int bluePin;
 
+	//brightness increase and reduce speed
+	const unsigned int reduceSpeed = 10;
+	const unsigned int increaceSpeed = 10;
+
 	Color currentColor;
 
 	#define COLOR_COUNT 8
@@ -51,6 +55,9 @@ public:
 	void turnOff();
 	unsigned int getPredefinedColorCount();
 
+	void reduceBrightness();
+	void increaceBrightness();
+	void setColorOfPalette(unsigned int number);
 };
 
 #endif //LED_STRIP

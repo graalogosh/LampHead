@@ -40,6 +40,9 @@ void LEDStrip::setColor (unsigned int red, unsigned int green, unsigned int blue
 	if (lightState == ON){
 		writeRGB(currentColor.red, currentColor.green, currentColor.blue);
 	}
+	else{
+		writeRGB(0,0,0);
+	}
 }
 
 void LEDStrip::blink(const unsigned int count){
@@ -142,4 +145,104 @@ void LEDStrip::setPredefinedColor(unsigned int number){
 		number--;
 	}
 	setColor(predefinedColors[number].red, predefinedColors[number].green, predefinedColors[number].blue);
+}
+
+State LEDStrip::getLightState(){
+	return lightState;
+}
+
+void LEDStrip::reduceBrightness(){
+	bool stop = false;
+	const unsigned int redStep = currentColor.red / reduceSpeed;
+	if (currentColor.red >= redStep){
+		currentColor.red -= redStep;
+	}
+	else{
+		stop = true;
+	}
+	const unsigned int greenStep = currentColor.green / reduceSpeed;
+	if (currentColor.green >= greenStep){
+		currentColor.green -= greenStep;
+	}
+	else{
+		stop = true;
+	}
+	const unsigned int blueStep = currentColor.blue / reduceSpeed;
+	if (currentColor.blue >= blueStep){
+		currentColor.blue -= blueStep;
+	}	
+	else{
+		stop = true;
+	}
+
+	#ifdef DEBUG
+		Serial.print("Stop: "); Serial.println(stop);
+	#endif
+	
+	if (!stop){
+		setColor(currentColor.red, currentColor.green, currentColor.blue);
+	}
+	// else{
+	// 	turnOff();
+	// }
+}
+
+void LEDStrip::increaceBrightness(){
+	bool stop = false;
+	const unsigned int redStep = currentColor.red / increaceSpeed;
+	if (currentColor.red + redStep < 254){
+		currentColor.red += redStep;
+	}
+	else{
+		currentColor.red = 254;
+		stop = true;
+	}
+	const unsigned int greenStep = currentColor.green / increaceSpeed;
+	if (currentColor.green + greenStep < 254){
+		currentColor.green += greenStep;
+	}
+	else{
+		currentColor.green = 254;
+		stop = true;
+	}
+	const unsigned int blueStep = currentColor.blue / increaceSpeed;
+	if (currentColor.blue + blueStep < 254){
+		currentColor.blue += blueStep;
+	}	
+	else{
+		currentColor.blue = 254;
+		stop = true;
+	}
+
+	#ifdef DEBUG
+		Serial.print("Stop: "); Serial.println(stop);
+	#endif
+	
+	if (!stop){
+		setColor(currentColor.red, currentColor.green, currentColor.blue);
+	}
+}
+
+void LEDStrip::setColorOfPalette(unsigned int number){
+	unsigned int red;
+	unsigned int green;
+	unsigned int blue;
+
+	if (number < 256){//red-green
+		red = map(number, 0, 1023, 0, 254);
+		green = map(number, 0, 1023, 254, 0);
+		blue = 0;
+	}
+	else if (number < 512){ //green-blue
+		red = 0;
+		green = map (number, 0, 1023, 0, 254);
+		blue = map (number, 0, 1023, 254, 0);
+	}
+	else{ //number < 1023 blue-red
+		red = map (number, 0, 1023, 254, 0);
+		green = 0;
+		blue = map (number, 0, 1023, 0, 254);
+	}
+
+	setColor(red, green, blue);
 }

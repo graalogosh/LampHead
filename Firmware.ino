@@ -66,10 +66,10 @@ void loop(){
 		return;
 	}
 
-	const float distance1WithNegativeHysteresis = (float)distance1 - (float)distance1/100.0f * (float) hysteresisPercent;
-	const float distance1WithPositiveHysteresis = (float)distance1 + (float)distance1/100.0f * (float) hysteresisPercent;
+	const float distance1WithNegativeHysteresis = (float)distance1 - (float)maxHeight/100.0f * (float) hysteresisPercent;
+	const float distance1WithPositiveHysteresis = (float)distance1 + (float)maxHeight/100.0f * (float) hysteresisPercent;
 
-	if ((float)distance2 < distance1WithNegativeHysteresis){
+	if ((float)distance2 < distance1WithNegativeHysteresis){ //reduce brightness
 		#ifdef DEBUG
 			Serial.print("Dist1: "); Serial.println(distance1);
 			Serial.print("Dist1-NegHystPerc: "); Serial.println(distance1WithNegativeHysteresis);
@@ -77,17 +77,24 @@ void loop(){
 			Serial.println("Dist2 < DistWithNegHyst - reduce brightness");
 		#endif //DEBUG
 
+		while(rangeSensor->getRange()!=-1 && ledStrip->getLightState()!=OFF){
+			ledStrip->reduceBrightness();
+			delay(50);
+		}
 	}
-	else if((float) distance2 > distance1WithPositiveHysteresis){
+	else if((float) distance2 > distance1WithPositiveHysteresis){ //increace brightness
 		#ifdef DEBUG
 			Serial.print("Dist1: "); Serial.println(distance1);
 			Serial.print("Dist1+PosHystPerc: "); Serial.println(distance1WithPositiveHysteresis);
 			Serial.print("Dist2: "); Serial.println(distance2);
 			Serial.println("Dist2 > DistWithPosHyst - increase brightness");
 		#endif //DEBUG
-
+		while(rangeSensor->getRange()!=-1){
+			ledStrip->increaceBrightness();
+			delay(50);
+		}		
 	}
-	else{
+	else{ //change color
 		#ifdef DEBUG
 			Serial.print("Dist1: "); Serial.println(distance1);
 			Serial.print("Dist1-NegHystPerc: "); Serial.println(distance1WithNegativeHysteresis);
