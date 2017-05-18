@@ -9,6 +9,8 @@ struct Color{
 	unsigned int blue;
 };
 
+enum State{ OFF, ON };
+
 class LEDStrip{
 private:
 	unsigned int redPin;
@@ -35,7 +37,7 @@ private:
 	const unsigned int colorCount = COLOR_COUNT;
 	#undef COLOR_COUNT
 
-	enum { OFF, ON } lightState;
+	State lightState;
 
 	void writeRGB(unsigned int red, unsigned int green, unsigned int blue);
 
@@ -54,7 +56,7 @@ public:
 	void turnOn();
 	void turnOff();
 	unsigned int getPredefinedColorCount();
-
+	State getLightState();
 	void reduceBrightness();
 	void increaceBrightness();
 	void setColorOfPalette(unsigned int number);
