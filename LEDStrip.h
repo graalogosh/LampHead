@@ -59,7 +59,7 @@ public:
 	State getLightState();
 	void reduceBrightness();
 	void increaceBrightness();
-	void setColorOfPalette(unsigned int number);
+	void setColorOfPalette(unsigned int number, unsigned int paletteStart, unsigned int paletteFinish);
 };
 
 #endif //LED_STRIP

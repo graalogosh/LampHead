@@ -223,26 +223,41 @@ void LEDStrip::increaceBrightness(){
 	}
 }
 
-void LEDStrip::setColorOfPalette(unsigned int number){
-	unsigned int red;
+	void LEDStrip::setColorOfPalette(unsigned int number, unsigned int paletteStart, unsigned int paletteFinish){
+	
+	const unsigned int red1Level = paletteStart;
+	const unsigned int greenLevel = paletteStart + (paletteFinish - paletteFinish) / 3;
+	const unsigned int blueLevel = paletteStart + (paletteFinish - paletteStart) / 3 * 2;
+	const unsigned int red2Level = paletteFinish; 
+
+	#ifdef DEBUG
+		Serial.print("red1Level: "); Serial.println(red1Level);
+		Serial.print("greenLevel: "); Serial.println(greenLevel);
+		Serial.print("blueLevel: "); Serial.println(blueLevel);
+		Serial.print("red2: "); Serial.println(red2Level);
+
+	#endif
+
+	unsigned int  red;
 	unsigned int green;
 	unsigned int blue;
 
-	if (number < 256){//red-green
-		red = map(number, 0, 1023, 0, 254);
-		green = map(number, 0, 1023, 254, 0);
+	if (number <= greenLevel){//red-green
+		red = map(number, red1Level, greenLevel, 0, 254);
+		green = map(number, red1Level, greenLevel, 254, 0);
 		blue = 0;
 	}
-	else if (number < 512){ //green-blue
+	else if (number <= blueLevel){ //green-blue
 		red = 0;
-		green = map (number, 0, 1023, 0, 254);
-		blue = map (number, 0, 1023, 254, 0);
+		green = map (number, greenLevel, blueLevel, 0, 254);
+		blue = map (number, greenLevel, blueLevel, 254, 0);
 	}
-	else{ //number < 1023 blue-red
-		red = map (number, 0, 1023, 254, 0);
+	else{ //number < red2Level blue-red
+		red = map (number, blueLevel, red2Level, 254, 0);
 		green = 0;
-		blue = map (number, 0, 1023, 0, 254);
+		blue = map (number, blueLevel, red2Level, 0, 254);
 	}
 
+	
 	setColor(red, green, blue);
 }
