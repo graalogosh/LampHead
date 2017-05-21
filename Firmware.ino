@@ -14,9 +14,9 @@ const unsigned int rangePin = A7;
 const unsigned int minHeight = 8;//TODO - change to real value
 const unsigned int maxHeight = 40;
 
-//brightness increase and reduce speed
-const unsigned int reduceSpeed = 5;
-const unsigned int increaceSpeed = 5;
+// //brightness increase and reduce speed
+// const unsigned int reduceSpeed = 5;
+// const unsigned int increaceSpeed = 5;
 
 //fading steps
 const unsigned int fadingSteps = 20;
