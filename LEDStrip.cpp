@@ -141,10 +141,10 @@ void LEDStrip::setPredefinedColor(unsigned int number){
 	if (number > colorCount){
 		return;
 	}
-	else if (number == colorCount){
-		number--;
-	}
-	setColor(predefinedColors[number].red, predefinedColors[number].green, predefinedColors[number].blue);
+	// else if (number == colorCount){
+	// 	number--;
+	// }
+	setColor(predefinedColors[number-1].red, predefinedColors[number-1].green, predefinedColors[number-1].blue);
 }
 
 State LEDStrip::getLightState(){

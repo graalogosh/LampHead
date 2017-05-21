@@ -109,7 +109,7 @@ void loop(){
 			while (rangeSensor->getRange() != -1){
 				float distance = rangeSensor->getRange();
 				float step = (maxHeight-minHeight)/ledStrip->getPredefinedColorCount();
-				float area = round(distance/step);
+				float area = round(distance/step);//TODO distance/colorCount
 
 				#ifdef DEBUG
 					Serial.print("Dist: "); Serial.println(distance);
