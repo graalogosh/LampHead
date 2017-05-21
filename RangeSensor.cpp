@@ -38,6 +38,8 @@ unsigned int RangeSensor::getRange(){
 	float x2 = distanceArray[position + 1];
 	float currentDistance = (x2 - x1) * (y1 - currentVoltage) / (y1 - y2) + x1;
 
+	//currentDistance*=1.1;
+
 	if (rangeIsValid ((unsigned int) currentDistance)){
 		return (unsigned int) currentDistance;
 	}

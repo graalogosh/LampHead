@@ -42,8 +42,10 @@ void setup(){
 }
 
 void loop(){
+	// ledStrip->turnOn();
+	// ledStrip->setColorOfPalette(rangeSensor->getRange(), minHeight, maxHeight);
 	// Serial.println(rangeSensor->getRange());
-	// delay(200);
+	// delay(500);
 	// return;
 
 	const int distance1 = rangeSensor->getRange();
@@ -52,7 +54,7 @@ void loop(){
 		return;
 	}
 
-	delay(200);//need to find
+	delay(400);//need to find
 	const int distance2 = rangeSensor->getRange();
 	if (distance2==-1){
 		#ifdef DEBUG
