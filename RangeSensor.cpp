@@ -13,8 +13,8 @@ RangeSensor::RangeSensor(unsigned int rangePin){
 	this->maxHeight = 40;
 }
 
-unsigned int RangeSensor::getRange(){
-	float currentVoltage = getVoltage();
+int RangeSensor::getRange(){
+	float currentVoltage = getAnalogValue();
 
 	currentVoltage *= 0.00488758553; //  5 / 1023 = 0.00488758553
 	if (currentVoltage > voltageArray[0]) {
@@ -48,7 +48,7 @@ unsigned int RangeSensor::getRange(){
 	}
 }
 
-unsigned int RangeSensor::getVoltage(){
+unsigned int RangeSensor::getAnalogValue(){
 	int voltage = 0;
 	for (int i = 0; i < 10; i++){
 		voltage += analogRead(rangePin);

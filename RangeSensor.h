@@ -16,13 +16,13 @@ private:
 	unsigned int minHeight;
 	unsigned int maxHeight;
 
-	unsigned int getVoltage();
 	bool rangeIsValid(unsigned int range);
 public:
 	// RangeSensor(unsigned int rangePin, unsigned int minHeight, unsigned int maxHeight);
 	RangeSensor(unsigned int rangePin);
 
-	unsigned int getRange();
+	int getRange();
+	unsigned int getAnalogValue();
 };
 
 #endif //RANGE_SENSOR
